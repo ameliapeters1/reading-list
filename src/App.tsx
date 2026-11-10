@@ -7,6 +7,9 @@ import { BOOKS } from "./data/books"
 
 
 function App(){
+  const readBooks = BOOKS.filter(book => book.is_read);
+  const unreadBooks = BOOKS.filter(book => !book.is_read);
+
   return (
     <div className="page">
       <Header/>
@@ -14,7 +17,8 @@ function App(){
       </div>
       <main tabIndex={2}>
         <ResultCount count={BOOKS.length}/>
-        <BookList books={BOOKS}/>
+        <BookList books={readBooks} heading="Read:"/>
+        <BookList books={unreadBooks} heading="Unread:"/>
       </main>
       <Footer/>
     </div>
