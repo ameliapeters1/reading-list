@@ -1,18 +1,37 @@
-const book = {title:"Dune"}
+import BookCard from "./components/BookCard"
+import Footer from "./components/Footer"
+import Header from "./components/Header"
+
+// const book = {title:"Dune"}
 
 function App(){
   return (
     <div className="page">
-      <header>
-        <h1>My Reading List</h1>
-        <p> {book.title} </p>
-      </header>
+      <Header/>
+      <div className="book-info">
+        <BookCard
+          title="The Very Hungry Caterpillar"
+          author="Eric Carle"
+          genre="Childrens"
+          isRead={ true }
+        />
+        <BookCard
+          title="The Very Hungry Butterfly"
+          author="Eric Carle"
+          genre="Childrens"
+          isRead={ false }
+        />
+        <BookCard
+          title="The Very Hungry Maggot"
+          author="Eric Carle"
+          genre="Horror"
+          isRead={ false }
+        />
+      </div>
       <main tabIndex={2}>
         
       </main>
-      <footer>
-        <p> footer text </p>
-      </footer>
+      <Footer/>
     </div>
       
 
