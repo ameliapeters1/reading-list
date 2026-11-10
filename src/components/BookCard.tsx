@@ -5,10 +5,11 @@ interface BookCardProps {
   author: string;
   genre: string;
   isRead: boolean;
+  pages?: number;
 }
 
 function BookCard (props: BookCardProps) {
-    const {title, author, genre, isRead} = props
+    const {title, author, genre, isRead, pages} = props
 
     return (
         <li className="book-card">
@@ -17,6 +18,7 @@ function BookCard (props: BookCardProps) {
                     title={ title }
                     author={ author }
                     genre={ genre }
+                    pages={ pages}
                 />
                 { isRead && <span className="badge">Read</span> }
             </div>  
@@ -29,24 +31,3 @@ function BookCard (props: BookCardProps) {
 }
 
 export default BookCard
-
-// interface FavouiteThingsCardProps {
-//     favourite: Favourite
-// }
-
-// interface Favourite {
-//     title: string,
-//     rating: number
-// }
-
-// function FavouiteThingsCard (props: FavouiteThingsCardProps) {
-//     const { favourite } = props
-//     return (
-//         <li>
-//             <h3>{ favourite.title }</h3>
-//             <p>{ favourite.rating }</p>
-//         </li>
-//     )
-// }
-
-// export default FavouiteThingsCard
