@@ -1,7 +1,11 @@
-type Count = {count:number}
+interface ResultCountProps {
+    count: number;
+    label?: string
+}
 
-function ResultCount(count:Count){
-    return(<p>{count.count} books </p>)  
+
+function ResultCount({count, label="books"}: ResultCountProps){
+    return(<p>{ count } {label}</p>)  
 }
 
 export default ResultCount

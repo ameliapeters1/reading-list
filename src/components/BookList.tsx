@@ -18,6 +18,7 @@ function BookList({books}:BookListProps){
                     title={book.title} 
                     author={book.author} 
                     genre={book.genre}
+                    pages={book.pages}
                     />
             }
         )   
