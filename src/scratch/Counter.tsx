@@ -82,30 +82,3 @@ export default function Counter() {
 
 // export default About
 
-// function handleRatingChange(title: string, change: number): void {
-//         setFavouritesList((currFavourites) => {
-
-//             return currFavourites.map((fav)=>{return fav.title === title? {...fav, rating: fav.rating + change}: {...fav}    })
-        
-//         });
-//     }
-
-//     return (
-//         <section className="card">
-//             <h2 className="card-title">These are Tufty's favourite things:</h2>
-//             <ul className="favourites">
-//                 { favouritesList.map((favourite) => {
-//                     return (
-//                     <FavouiteThingsCard 
-//                     key={ favourite.title } 
-//                     favourite={ favourite} 
-//                     handleRatingChange={handleRatingChange}
-//                     />
-//                 );
-//                 }) }
-//             </ul>
-//         </section>
-//     )
-// }
-
-// export default FavouriteThingsList
