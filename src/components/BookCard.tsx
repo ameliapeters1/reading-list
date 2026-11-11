@@ -1,30 +1,43 @@
 import BookText from "./BookText";
+import type { Book } from "../types";
 
 interface BookCardProps {
-  title: string;
-  author: string;
-  genre: string;
-  isRead: boolean;
-  pages?: number;
+  book: Book
+  toggleRead: (id: number) => void;
+  deleteBook: (id: number) => void;
 }
 
 function BookCard (props: BookCardProps) {
-    const {title, author, genre, isRead, pages} = props
+    const { book, toggleRead, deleteBook } = props
 
     return (
         <li className="book-card">
             <div className="book-info">
                 <BookText
-                    title={ title }
-                    author={ author }
-                    genre={ genre }
-                    pages={ pages}
+                    title={ book.title }
+                    author={ book.author }
+                    genre={ book.genre }
+                    pages={ book.pages}
                 />
-                { isRead && <span className="badge">Read</span> }
+                { book.is_read && <span className="badge">Read</span> }
             </div>  
             <div>
-                <button type="button" aria-label={ `Mark ${title} as ${isRead ? "Mark unread": "Mark read"}` } className="btn toggle-btn">{ isRead ? "Mark unread": "Mark read"}</button>
-                <button type="button" aria-label={ `delete ${title}` } className="btn delete-btn">Delete</button>
+                <button 
+                    type="button" 
+                    aria-label={ `Mark ${book.title} as ${book.is_read ? "Mark unread": "Mark read"}` } 
+                    className="btn toggle-btn" 
+                    onClick={()=>{toggleRead(book.id)}}
+                >
+                    { book.is_read ? "Mark unread": "Mark read"}
+                </button>
+                <button 
+                    type="button" 
+                    aria-label={ `delete ${book.title}` } 
+                    className="btn delete-btn" 
+                    onClick={()=>{deleteBook(book.id)}}
+                >
+                    Delete
+                </button>
             </div>
         </li>
     )
