@@ -20,7 +20,6 @@ export default function Counter() {
       setCount((currCount)=> {return currCount+number});
     }
 
-    
 
   return (
     <div>
@@ -46,39 +45,3 @@ export default function Counter() {
 
   );
 }
-
-// function About () {
-
-//     const [claps, setClaps] = useState(0)
-//     // When to use generics:
-//     // const [favouritesList, setFavouritesList] = useState<Favourites[]>([]);
-//     function handleClick() {
-//         setClaps((currClaps)=>{
-//             return currClaps + 1;
-//         });
-//         setClaps((currClaps)=>{
-//             return currClaps + 1;
-//         });
-//         setClaps((currClaps)=>{
-//             return currClaps + 1;
-//         });
-//     }
-
-//     return (
-//     <section>
-//         <h2>All about Tufty</h2>
-//         <p>Tufty is a cool girl who loves getting into trouble</p>
-
-//         <button 
-//         onClick={handleClick}
-//         >
-//             Clap for Tufty
-//         </button>
-//         <p>claps: {claps}</p>
-
-//     </section>
-//     )
-// }
-
-// export default About
-
