@@ -1,13 +1,16 @@
 import type { Book } from "../types"
 import BookCard from "./BookCard"
 import ResultCount from "./ResultCount";
- 
+
+
 interface BookListProps {
   books: Book[];
   heading?: string;
+  toggleRead: (id: number) => void;
+  deleteBook: (id: number) => void;
 }
 
-function BookList({books, heading}:BookListProps){
+function BookList({books, heading, toggleRead, deleteBook}:BookListProps){
     let content;
 
     if (books.length ===0){
@@ -16,11 +19,9 @@ function BookList({books, heading}:BookListProps){
         content = books.map((book) => {
             return <BookCard 
                     key={book.id} 
-                    isRead={book.is_read} 
-                    title={book.title} 
-                    author={book.author} 
-                    genre={book.genre}
-                    pages={book.pages}
+                    book={book}
+                    toggleRead={toggleRead}
+                    deleteBook={deleteBook}
                     />
             }
         )   
