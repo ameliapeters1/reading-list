@@ -15,4 +15,7 @@ Q: Why is count declared with const when its value clearly changes?
 A: The setter is what replaces it so count isn't actually changing itself
 
 
+## Task 2
 
+Change the reset to onClick={handleReset()}. Read the error aloud, and write down in a sentence why it produces Too many re-renders. Then put it back.
+It produces too many re-renders because onClick must be passed a function not a function invocation
