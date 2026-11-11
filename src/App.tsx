@@ -4,6 +4,7 @@ import Footer from "./components/Footer"
 import Header from "./components/Header"
 import ResultCount from "./components/ResultCount"
 import { BOOKS } from "./data/books"
+import Counter from "./scratch/Counter"
 
 
 function App(){
@@ -19,6 +20,7 @@ function App(){
         <ResultCount count={BOOKS.length}/>
         <BookList books={readBooks} heading="Read:"/>
         <BookList books={unreadBooks} heading="Unread:"/>
+        <Counter/>
       </main>
       <Footer/>
     </div>
