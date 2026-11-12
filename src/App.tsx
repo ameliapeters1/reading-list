@@ -31,7 +31,6 @@ function App(){
   return (
     <div className="page">
       <Header/>
-      <Echo/>
       <div className="book-info">
         <ReadCounter readCount={readCount} total={books.length}/>
       </div>
