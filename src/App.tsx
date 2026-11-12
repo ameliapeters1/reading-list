@@ -7,25 +7,34 @@ import type { Book, StatusFilter } from "./types"
 import { useState } from "react"
 import FilterBar from "./components/FilterBar"
 import SearchBox from "./components/SearchBox"
+import GenreSelect from "./components/GenreSelect"
 
 
 function App(){
   const [books, setBooks] = useState<Book[]>(BOOKS);
   const [filter, setFilter] = useState<StatusFilter>("all");
   const [search, setSearch] = useState<string>("")
+  const [genre, setGenre]= useState<string>("All genres")
+
 
   const visibleBooks = books.filter((book) => {
-  const trimmedSearch = search.trim().toLowerCase()
-  if (trimmedSearch === "") {
-    if (filter === "all") return true;
-    if (filter === "read") return book.is_read;
-    if (filter === "unread") return !book.is_read;
-  } else {
-    if ((book.title.toLowerCase().includes(trimmedSearch) || book.author.toLowerCase().includes(trimmedSearch)) && filter === "all") return true;
-    if ((book.title.toLowerCase().includes(trimmedSearch) || book.author.toLowerCase().includes(trimmedSearch)) && filter === "read") return book.is_read;
-    if ((book.title.toLowerCase().includes(trimmedSearch) || book.author.toLowerCase().includes(trimmedSearch)) && filter === "unread") return !book.is_read;  
-  }
-});
+    const trimmedSearch = search.trim().toLowerCase()
+
+    const matchesSearch =
+        book.title.toLowerCase().includes(trimmedSearch) ||
+        book.author.toLowerCase().includes(trimmedSearch)
+
+    const matchesReadStatus =
+        filter === "all" ||
+        (filter === "read" && book.is_read) ||
+        (filter === "unread" && !book.is_read)
+
+    const matchesGenre =
+        genre === "All genres" || book.genre === genre
+
+    return matchesSearch && matchesReadStatus && matchesGenre
+  })
+
 
   const toggleRead = (id: number) => {
     setBooks((currBooks) => currBooks.map((book) => book.id === id? {...book, is_read: !book.is_read }: book))};
@@ -39,6 +48,9 @@ function App(){
   return (
     <div className="page">
       <Header/>
+      <GenreSelect 
+      genre = {genre}
+      setGenre={setGenre}/>
       <SearchBox 
         value={search} 
         onChange={(value)=>setSearch(value)}
