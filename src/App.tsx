@@ -6,6 +6,7 @@ import { BOOKS } from "./data/books"
 import type { Book, StatusFilter } from "./types"
 import { useState } from "react"
 import FilterBar from "./components/FilterBar"
+import Echo from "./scratch/Echo"
 
 
 function App(){
@@ -30,6 +31,7 @@ function App(){
   return (
     <div className="page">
       <Header/>
+      <Echo/>
       <div className="book-info">
         <ReadCounter readCount={readCount} total={books.length}/>
       </div>
@@ -43,6 +45,7 @@ function App(){
         deleteBook={deleteBook}
       />
       </main>
+      
       <Footer/>
     </div>
       
