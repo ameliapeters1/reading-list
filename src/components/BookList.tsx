@@ -31,7 +31,12 @@ function BookList({books, heading, toggleRead, deleteBook}:BookListProps){
     return(
     <>
         {heading && <h2 className="list-heading">{heading}</h2>}
-        <ResultCount count={books.length} label={books.length === 1 ? "book" : "books"} />
+       {books.length > 0 && (
+        <ResultCount
+            count={books.length}
+            label={books.length === 1 ? "book" : "books"}
+        />
+)}
         <ul className="book-list"> 
             {content}
         </ul>
