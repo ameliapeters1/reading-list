@@ -11,6 +11,7 @@ import GenreSelect from "./components/GenreSelect"
 import PagesOnlyToggle from "./components/PagesOnlyToggle"
 import BookForm from "./components/BookForm"
 import type { FormValues } from "./lib/validate"
+import { filterBooks } from "./utils/filterBooks"
 
 
 function App(){
@@ -29,28 +30,7 @@ function App(){
     })
   }
 
-
-  const visibleBooks = books.filter((book) => {
-    const trimmedSearch = search.trim().toLowerCase()
-
-    const matchesSearch =
-        book.title.toLowerCase().includes(trimmedSearch) ||
-        book.author.toLowerCase().includes(trimmedSearch)
-
-    const matchesReadStatus =
-        filter === "all" ||
-        (filter === "read" && book.is_read) ||
-        (filter === "unread" && !book.is_read)
-
-    const matchesGenre =
-        genre === "All genres" || book.genre === genre
-
-    const matchesPages =
-      !pagesOnly || book.pages != null
-
-    return matchesSearch && matchesReadStatus && matchesGenre && matchesPages
-  })
-
+  const visibleBooks = filterBooks({books,filter,search,genre,pagesOnly,})
 
   const toggleRead = (id: number) => {
     setBooks((currBooks) => currBooks.map((book) => book.id === id? {...book, is_read: !book.is_read }: book))};
