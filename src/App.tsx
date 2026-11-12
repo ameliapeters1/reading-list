@@ -8,6 +8,7 @@ import { useState } from "react"
 import FilterBar from "./components/FilterBar"
 import SearchBox from "./components/SearchBox"
 import GenreSelect from "./components/GenreSelect"
+import PagesOnlyToggle from "./components/PagesOnlyToggle"
 
 
 function App(){
@@ -15,6 +16,7 @@ function App(){
   const [filter, setFilter] = useState<StatusFilter>("all");
   const [search, setSearch] = useState<string>("")
   const [genre, setGenre]= useState<string>("All genres")
+  const [pagesOnly, setPagesOnly] = useState<boolean>(false)
 
 
   const visibleBooks = books.filter((book) => {
@@ -32,7 +34,10 @@ function App(){
     const matchesGenre =
         genre === "All genres" || book.genre === genre
 
-    return matchesSearch && matchesReadStatus && matchesGenre
+    const matchesPages =
+      !pagesOnly || book.pages != null
+
+    return matchesSearch && matchesReadStatus && matchesGenre && matchesPages
   })
 
 
@@ -55,6 +60,9 @@ function App(){
         value={search} 
         onChange={(value)=>setSearch(value)}
       />
+      <PagesOnlyToggle
+      checked = {pagesOnly}
+      onChange={setPagesOnly}/>
       <div className="book-info">
         <ReadCounter readCount={readCount} total={books.length}/>
       </div>

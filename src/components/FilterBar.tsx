@@ -8,34 +8,41 @@ interface FilterBarProps {
 
 function FilterBar({ current, onChange }: FilterBarProps) {
   return (
-    <div className="filter-bar">
-      <button
-        type="button"
-        aria-pressed={current === "all"}
-        className={current === "all" ? "is-active" : ""}
-        onClick={() => onChange("all")}
-      >
-        All
-      </button>
+    <fieldset className="filter-bar">
+        <legend>Status</legend>
+        <label>
+          <input
+            type="radio"
+            name="status"
+            value="all"
+            checked={current === "all"}
+            onChange={() => onChange("all")}
+          />
+          All
+        </label>
 
-      <button
-        type="button"
-        aria-pressed={current === "read"}
-        className={current === "read" ? "is-active" : ""}
-        onClick={() => onChange("read")}
-      >
-        Read
-      </button>
+        <label>
+          <input
+            type="radio"
+            name="status"
+            value="read"
+            checked={current === "read"}
+            onChange={() => onChange("read")}
+          />
+          Read
+        </label>
 
-      <button
-        type="button"
-        aria-pressed={current === "unread"}
-        className={current === "unread" ? "is-active" : ""}
-        onClick={() => onChange("unread")}
-      >
-        Unread
-      </button>
-    </div>
+        <label>
+          <input
+            type="radio"
+            name="status"
+            value="unread"
+            checked={current === "unread"}
+            onChange={() => onChange("unread")}
+          />
+          Unread
+        </label>
+      </fieldset>
   );
 }
 
