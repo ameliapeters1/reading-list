@@ -9,6 +9,8 @@ import FilterBar from "./components/FilterBar"
 import SearchBox from "./components/SearchBox"
 import GenreSelect from "./components/GenreSelect"
 import PagesOnlyToggle from "./components/PagesOnlyToggle"
+import BookForm from "./components/BookForm"
+import type { FormValues } from "./lib/validate"
 
 
 function App(){
@@ -17,6 +19,15 @@ function App(){
   const [search, setSearch] = useState<string>("")
   const [genre, setGenre]= useState<string>("All genres")
   const [pagesOnly, setPagesOnly] = useState<boolean>(false)
+
+  function handleAddBook(values: FormValues) {
+    setBooks((currBooks) => {
+      const highestId = Math.max(0, ...currBooks.map((book) => book.id))
+
+      const newBook: Book = {...values, id: highestId + 1, is_read: false}
+      return [...currBooks, newBook]
+    })
+  }
 
 
   const visibleBooks = books.filter((book) => {
@@ -53,6 +64,7 @@ function App(){
   return (
     <div className="page">
       <Header/>
+      <BookForm onAddBook={handleAddBook}/>
       <GenreSelect 
       genre = {genre}
       setGenre={setGenre}/>
